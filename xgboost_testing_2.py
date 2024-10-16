@@ -6,7 +6,7 @@ import xgboost as xgb
 from xgboost import XGBClassifier
 
 # 1. Load and prepare the dataset
-data = pd.read_csv('your_dataset.csv')
+data = pd.read_csv('dataset.csv')
 
 # Split features and target (LPP)
 X = data.drop(columns=['LPP'])
@@ -83,6 +83,8 @@ print(f"\nBest model based on {best_metric.upper()} with test score: {best_score
 # 4. Final Evaluation on holdout test set
 y_test_pred = best_model.predict(X_test)
 
+best_model.save_model("models/best_xgb_model.json") 
+
 # Calculate final evaluation metrics
 accuracy = accuracy_score(y_test, y_test_pred)
 f1 = f1_score(y_test, y_test_pred, average='weighted')
@@ -94,3 +96,8 @@ print(f"F1-Score: {f1}")
 print(f"Log Loss: {logloss}")
 print("\nClassification Report:")
 print(classification_report(y_test, y_test_pred))
+
+
+# To load model
+# loaded_model = xgb.XGBClassifier()
+# loaded_model.load_model("models/best_xgb_model.json") 
