@@ -100,4 +100,4 @@ print(classification_report(y_test, y_test_pred))
 
 # To load model
 # loaded_model = xgb.XGBClassifier()
-# loaded_model.load_model("models/best_xgb_model.json") 
+# loaded_model.load_model("models/best_xgb_model.json")
